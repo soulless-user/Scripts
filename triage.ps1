@@ -6,7 +6,7 @@
 $Target = Read-Host -Prompt 'Input the target hostname'
 $Date = date
 echo $Date > triage.txt
-Get-WMIObject -class Win32_ComputerSystem -ComputerName $Target | select username > triage.txt
+Get-WMIObject -class Win32_ComputerSystem -ComputerName $Target | select username >> triage.txt
 Get-WmiObject -Class Win32_Process -ComputerName $Target >> triage.txt
 psexec \\$Target netsh interface ipv4 show tcpconnections >> triage.txt
 psexec \\$Target netstat -aob >> triage.txt
